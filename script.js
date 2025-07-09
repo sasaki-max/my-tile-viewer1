@@ -1,10 +1,10 @@
 const map = L.map('map').setView([34.92, 139.63], 16); // 適宜緯度経度を修正
 
-// 1. 航空写真タイルの読み込み
-L.tileLayer('https://sasaki-max.github.io/my-tile-viewer1/tiles/{z}/{x}/{y}.png', {
+// 1. OpenStreetMapベースレイヤーを追加（任意）
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors',
   minZoom: 16,
-  maxZoom: 18,
-  attribution: '航空写真'
+  maxZoom: 18
 }).addTo(map);
 
 // 2. 筆ポリゴンの読み込み
