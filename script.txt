@@ -1,0 +1,28 @@
+const map = L.map('map').setView([34.9, 136.9], 16); // 位置は適宜調整
+
+// 背景：ラスタ画像タイル
+L.tileLayer('tiles/{z}/{x}/{y}.png', {
+  minZoom: 16,
+  maxZoom: 18,
+  tms: false,
+  attribution: 'Raster from 07ND953'
+}).addTo(map);
+
+// GeoJSONレイヤーの追加
+function addGeoJsonLayer(file, color) {
+  fetch(file)
+    .then(res => res.json())
+    .then(data => {
+      L.geoJSON(data, {
+        style: {
+          color: color,
+          weight: 2,
+          fillOpacity: 0.3
+        }
+      }).addTo(map);
+    });
+}
+
+addGeoJsonLayer('overlap_result.geojson', 'blue');
+addGeoJsonLayer('overlap_result1.geojson', 'red');
+addGeoJsonLayer('fude.geojson', 'green');
